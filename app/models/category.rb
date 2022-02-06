@@ -10,4 +10,10 @@
 #
 class Category < ApplicationRecord
   has_many :tasks
+
+#valida que se encuentren los campos
+  validates :name, :description, presence: true
+#valida que solo exista un registro con ese nombre
+#case_sensitive es para ignorar mayusculas
+  validates :name, uniqueness: {case_sensitive: false}
 end

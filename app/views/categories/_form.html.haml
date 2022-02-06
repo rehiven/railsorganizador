@@ -4,8 +4,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name
-    = f.input :description
+    = f.input :name, label: t('.name')
+    = f.input :description, label: t('.description')
 
   .form-actions
     = f.button :submit
