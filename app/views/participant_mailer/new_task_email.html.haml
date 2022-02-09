@@ -1,0 +1,15 @@
+%h1 Hola
+%h2=@user.email
+%h3 tienes una nueva Tarea
+%p
+  %b Nombre
+  = @task.name
+%p
+  %b Descripcion
+  = @task.description
+%p
+  %b Categoria
+  = @task.category.name
+%p
+  %b Enlance
+  = link_to @task.code, @task

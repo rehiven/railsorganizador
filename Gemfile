@@ -50,6 +50,7 @@ group :development do
   gem 'hamlit-rails'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'letter_opener'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring'
 end
