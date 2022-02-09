@@ -9,6 +9,8 @@
 #  category_id :bigint           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  owner_id    :bigint           not null
+#  code        :string
 #
 class Task < ApplicationRecord
   #tiene categorias
@@ -19,9 +21,11 @@ class Task < ApplicationRecord
   has_many :participating_users, class_name: 'Participant'
   #esto es para vincular usuarios atraves de participantes
   has_many :participants, through: :participating_users, source: :user
-  #valida que se encuentren los campos
 
+  has_many :notes
   #validaciones***************************************************************
+
+  #valida que se encuentren los campos
   validates :participating_users, presence: true
   #valida que solo exista un registro con ese nombre
   #case_sensitive es para ignorar mayusculas
