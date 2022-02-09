@@ -16,19 +16,21 @@ class Task < ApplicationRecord
   #tiene un creador 'owner' atraves de clase 'user'
   belongs_to :owner, class_name: 'User'
   #tiene muchos participantes, atraves de la clase 'participants'
-  has_many :participating_user, class_name: 'Participant'
+  has_many :participating_users, class_name: 'Participant'
   #esto es para vincular usuarios atraves de participantes
   has_many :participants, through: :participating_users, source: :user
 #valida que se encuentren los campos
 
 #validaciones***************************************************************
-  validate :participating_users, presence: true
-
-  validates :name, :description, presence: true
+  validates :participating_users, presence: true
 #valida que solo exista un registro con ese nombre
 #case_sensitive es para ignorar mayusculas
-  validates :name, uniqueness: {case_sensitive: false}
+  validates :name, uniqueness: {case_insensitive: false}
   validate :due_date_validity
+
+  before_create :create_code
+
+  accepts_nested_attributes_for :participating_users, allow_destroy: true
 
   def due_date_validity
     return if due_date.blank?
@@ -36,4 +38,9 @@ class Task < ApplicationRecord
     #este metodo pasa errores a la vista
     errors.add :due_date, I18n.t('task.errors.invalid_due_date')
   end
+
+  def create_code
+    self.code = "#{owner_id}#{Time.now.to_i.to_s(36)}#{SecureRandom.hex(8)}"
+  end
+
 end
