@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#Organizador app de prueba
 
-Things you may want to cover:
+Mi nombre es Christoher Vargas esto es una prueba
+de conocimientos sobre rails
 
-* Ruby version
+version ruby 2.7.5
+version rails 6.1.4
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+db: postgreSQL
