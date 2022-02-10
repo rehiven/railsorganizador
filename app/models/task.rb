@@ -18,7 +18,7 @@ class Task < ApplicationRecord
   #tiene un creador 'owner' atraves de clase 'user'
   belongs_to :owner, class_name: 'User'
   #tiene muchos participantes, atraves de la clase 'participants'
-  has_many :participating_users, class_name: 'Participant'
+  has_many :participating_users, class_name: 'Participant', dependent: :delete_all
   #esto es para vincular usuarios atraves de participantes
   has_many :participants, through: :participating_users, source: :user
 
@@ -31,7 +31,7 @@ class Task < ApplicationRecord
   #case_sensitive es para ignorar mayusculas
   validates :name, uniqueness: {case_insensitive: false}
   validate :due_date_validity
-
+  
   before_create :create_code
   after_create :send_email
 
