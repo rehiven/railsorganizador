@@ -31,7 +31,7 @@ class Task < ApplicationRecord
   #case_sensitive es para ignorar mayusculas
   validates :name, uniqueness: {case_insensitive: false}
   validate :due_date_validity
-  
+
   before_create :create_code
   after_create :send_email
 
@@ -49,6 +49,7 @@ class Task < ApplicationRecord
   end
 
   def send_email
+    return unless Rails.env.development?
     (participants + [owner]).each do |user|
       ParticipantMailer.with(user: user, task: self).new_task_email.deliver!
     end
